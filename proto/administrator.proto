@@ -1,0 +1,27 @@
+
+syntax = "proto3";
+option csharp_namespace = "Hospital_System";
+import "client.proto";
+
+package client;
+
+
+service Administrator {
+
+    rpc getListPatient(MasterRequest) returns (PatientResponse);
+
+    rpc getListStaff(MasterRequest) returns (StaffResponse);
+
+    rpc insertStaff(MasterRequest) returns (StaffResponse);
+
+    rpc insertMultyStaff(MasterRequest) returns (StaffResponse);
+
+    rpc insertMultyBed(MasterRequest) returns (BedResponse);
+
+    rpc getListBed(MasterRequest) returns (BedResponse);
+
+    rpc modifyBed(MasterRequest) returns (BedResponse);
+
+
+
+}

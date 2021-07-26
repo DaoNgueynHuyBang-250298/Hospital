@@ -1,0 +1,92 @@
+.wrap{
+    background: #FFFFFF;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+    height:470px ;
+  }
+  .wrap2{
+    background: #FFFFFF;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+    height:80px ;
+  }
+  .synthesis_title{
+    width: 166px;
+
+    padding-top: 18px;
+    padding-left: 18px;
+    padding-bottom: 12px;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+
+    color: #000000;
+
+    border-bottom: 1px solid #C4C4C4;
+    margin-bottom: 3px; 
+  }
+
+  .status_Online{
+    background-color:#C5EBDA;
+    color:#05A85F;
+    border-radius: 20px;
+    width: 70px;
+    text-align: center;
+  }
+  .status_Offline{
+    background-color:#EBEBEB;
+    color:#696969;
+    border-radius: 20px;
+    width: 70px;
+    text-align: center;
+  }
+
+/* thiết lập style cho thẻ a */
+
+.pagination a {
+  color: black;
+  float: right;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color .3s;
+}
+/* thiết lập style cho class active */
+.pagination a.active {
+  background-color: dodgerblue;
+  color: white;
+}
+/* thêm màu nền khi người dùng hover vào class không active */
+.pagination a:hover:not(.active) {
+  background-color: #ddd;
+}
+#myInput {
+  background-image: url('/assets/svg/search.svg'); /* Add a search icon to input */
+  background-position: 10px 12px; /* Position the search icon */
+  background-repeat: no-repeat; /* Do not repeat the icon image */
+  /* background: url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 9px center ; */
+  width: 340px;
+  font-size: 12px; /* Increase font-size */
+  padding: 12px 20px 12px 40px; /* Add some padding */
+  border: 1px solid #ddd; /* Add a grey border */
+  border-radius: 5px;
+}
+
+/* btn xuất export*/
+.exportBtn {
+  border: 1px solid forestgreen;
+  color: forestgreen;
+  background: #FFFFFF;
+  padding: 9px 10px 9px 10px;
+  font-size: 12px;
+  border-radius: 5px;
+  float: right;
+}
+.exportBtn:hover {
+  background-color: forestgreen; /* Green */
+  color: white;
+}
+
+

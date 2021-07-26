@@ -1,0 +1,41 @@
+
+<div class='wrap'>
+  <div class="menu--title">PHAN CAP</div>
+  <ul class='tree'>
+    <li *ngFor="let itemData of data"
+
+    >
+      {{itemData.branch}}
+      <ul >
+        <li *ngFor="let itemBlock of itemData.block"
+
+        >
+          {{itemBlock}}
+          <ul >
+            <ng-container *ngFor='let itemFloor of itemData.floor'>
+              <li *ngIf='itemFloor.block==itemBlock'
+
+              >
+                {{itemFloor.floor}}
+                <ul  >
+                  <ng-container *ngFor='let itemFaculty of itemData.faculty'>
+                    <li *ngIf='itemFaculty.block==itemBlock&&itemFaculty.floor==itemFloor.floor'
+                      attr.data-filter="{{itemFaculty.filter}}"
+                      (click)='setFilterValue($event)'
+                      class='liLast'
+                    >
+                      {{itemFaculty.faculty}}
+                    </li>
+                  </ng-container>
+                </ul>
+              </li>
+            </ng-container>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+
+</div>
+<!-- <button (click)='test()'>data</button> -->
+

@@ -1,0 +1,238 @@
+syntax = "proto3";
+
+option csharp_namespace = "Hospital_System";
+
+package client;
+
+service Account {
+    rpc signIn (UserInfo) returns (UserReply);
+    rpc register(UserInfo) returns (UserReply);
+    rpc updatePassword(UserInfo) returns (UserReply);
+}
+
+
+service Device {
+    rpc updateDeviceAction (DeviceRequest) returns (Response);
+    rpc addNewDevice (DeviceInfo) returns (Response);
+}
+
+service Mobile {
+    rpc getListPatientByStaff(MobileRequest) returns (PatientResponse);
+    rpc getListHistory(MobileRequest) returns (PatientHistoryResponse);
+    rpc getInfoStaff(MobileRequest) returns (StaffResponse);
+    rpc updateStaffInfo(MobileRequest) returns (StaffResponse); 
+    rpc updateAvatar(MobileRequest) returns (StaffResponse);
+}
+
+message DeviceInfo {
+   string idDevice = 1;
+   int32 port = 2;
+   string createdDate = 3;
+}
+
+message DeviceRequest {
+  string reportDate = 1;
+  int32 idObject = 2;
+  string idBed = 3;
+}
+
+message MobileRequest {
+  string fromDate = 1;
+  string endDate = 2;
+  string idStaff = 3;
+  string idPatient = 4;
+  string username = 5;
+  string password = 6;
+  string idPerson = 7; 
+  string idShift = 8;
+  string dayShift = 9;
+  string staffName = 10;
+  string address = 11;
+  string gender = 12;
+  string dob = 13;
+  string phoneNum = 14;
+  string identityCard = 15;
+  string avatar = 16;
+}
+
+message PatientResponse {
+  Response response = 1;
+  repeated PatientBedInfo data = 2;
+}
+
+message PatientHistoryResponse {
+  Response response = 1;
+  repeated PatientHistoryInfo data = 2;
+}
+
+message PatientHistoryInfo {
+  string idBed = 1;
+  string codeBed = 2;
+  string patientCode = 3;
+  string patientName = 4;
+  int32 idObject = 5;
+  int32 countSupportCall = 6;
+  int32 countEmergencyCall = 7;
+  string dateCheck = 8;
+}
+
+message MasterRequest {
+    string fromDate = 1;
+    string toDate = 2;
+    int32 userId = 3;
+    int32 idNurse = 4;
+    string idFaculty = 5;
+    string idRoom = 6;
+    string idBed = 7;
+    string bedName = 8;
+    string username = 9;
+    string personName = 10;
+    string gender  = 11;
+    string dob = 12;
+    string identityCard = 13;
+    string phoneNum = 14;
+    string address = 15;
+    string password = 16;
+    int32 idObject = 17;
+    string email = 18;
+    string img = 19;
+    string note = 20;
+    string idPerson = 21;
+    string excelFile = 22;
+    string idUnit = 23;
+}
+
+message UserInfo {
+    string username = 1;
+    string password = 2;
+    string token = 3;
+    int32 roleId = 4;
+    string idPerson = 5;
+    string newPassword = 6;
+}
+
+message Response {
+  ResponseState state = 1;
+  string message = 2;
+  bytes file = 3;
+}
+message UserReply {
+  Response response = 1;
+  UserInfo info = 2;
+}
+
+enum ResponseState {
+  SUCCESS = 0;
+  FAIL = 1;
+}
+
+message FacultyResponse {
+  Response response = 1;
+  repeated FacultyInfo data = 2;
+}
+
+message FacultyInfo {
+  int32 idFaculty = 1;
+  int32 idUnit = 2;
+  string facultyName = 3;
+}
+
+message BranchInfo {
+  string idBranch  = 1;
+  string branchName = 2;
+  string address = 3; 
+}
+
+message RoomInfo {
+  string idRoom = 1;
+}
+
+message Unit {
+  int32 idUnit = 1;
+  string blockName = 2;
+  int32 idBranch = 3;
+}
+
+
+message BedResponse {
+  Response response = 1;
+  repeated BedInfo data = 2;
+}
+
+message PatientBedInfo {
+  string idBed = 1;
+  string codeBed = 2;
+  string bedName = 3;
+  string roomName = 4;
+  string facultyName = 5;
+  string floorName = 6;
+  string blockName = 7;
+  string patientCode = 8;
+  string patientName = 9;
+  string patientGender = 10;
+  string patientBirthday = 11;
+  string patientAddress = 12;
+  string patientDateIn = 13;
+  string patientPathology = 14;
+  string patientTreatment = 15;
+  int32 idObject = 16;
+  bool status = 17;
+}
+
+message BedInfo {
+  string idBed = 1;
+  string codeBed = 2;
+  string codeRoom = 3;
+  string codeowndepartment = 4;
+  string codeuserdepartment = 5;
+  string codeDevice = 6;
+  int32 port = 7;
+  bool isdeleted = 8;
+  string bedName = 9;    
+  string roomName = 10;
+  bool isAvailable = 11;
+  string idRoom = 12;
+  string floorName = 13;
+  string idFloor = 14;
+  string facultyNameOwn = 15;
+  string FacultyNameUse = 16;
+  string idBlock = 17;
+  string blockName = 18;
+  string idBranch = 19;
+  string branchName = 20;
+}
+
+message PatientInfo {
+  string idPatient = 1;
+  string patientName = 2;
+  string gender = 3;
+  string identityCard = 4;
+  string phoneNum = 5;
+  string address = 6;
+  string birthday = 7;
+  string timeIn = 8;
+  string pathology = 9;
+  string treatment = 10;
+  string timeOut = 11;
+  string codeRoom = 12;
+}
+
+message StaffResponse {
+  Response response = 1;
+  repeated StaffInfo data = 2;
+}
+
+message StaffInfo {
+   string staffId = 1;
+   string username = 2;
+   string email = 3;
+   string staffName = 4;
+   string facultyName = 5;
+   string note = 6;
+   string address = 7;
+   string dob = 8;
+   string gender = 9;
+   string objectName = 10;
+   string phoneNum = 11;
+   string password = 12;
+}

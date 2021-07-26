@@ -1,0 +1,115 @@
+<app-navbar></app-navbar>  
+<div class="container-fluid" style='padding: 25px 70px 0px 70px; display: flex;' >
+    <div class="wrap" style='display: flex;'>
+        <div><img src="/assets/CapCuu.png"></div>
+        <div style="padding-top: 50px;"><h2 style="color: #f23350;">12</h2><h4>Gọi cấp cứu</h4></div>          
+    </div>
+
+    <div class="wrap" style='display: flex;'>
+        <div><img src="/assets/CapCuu.png"></div>
+        <div style="padding-top: 50px;"><h2 style="color: #f2b635;">6</h2><h4>Gọi y tá</h4></div> 
+    </div>
+
+    <div class="wrap" style='display: flex;'>
+        <div><img src="/assets/CapCuu.png"></div>
+        <div style="padding-top: 50px;"><h2 style="color: #633ade;">4</h2><h4>Y tá đến trễ</h4></div> 
+    </div>
+
+    <div class="wrap" style='display: flex;'>
+        <div><img src="/assets/CapCuu.png"></div>
+        <div style="padding-top: 50px;"><h2 style="color: #2f71f5;" >{{kq}}/{{kq2}}</h2><h4>Tổng gường bệnh</h4></div> 
+    </div>
+</div>
+
+<div class="container-fluid" style='padding: 10px 70px 0px 70px; display: flex;' >
+    <div class="wrap2" >
+        <div class="title" style="display: flex;">
+            <img src="/assets/svg/bedEmpty.svg" style=" padding: 1px 5px 0 1px;">Tổng giường của mỗi khoa</div>
+
+        <dx-data-grid [columnAutoWidth]="true" [dataSource]="ListBed" [rowAlternationEnabled]="true" [showColumnLines]="false" style="padding: 10px 20px 10px 20px;">
+            <dxi-column dataField="KHOA"></dxi-column>
+            <dxi-column dataField="TRONG" caption="Trống" alignment="center" cellTemplate="cellTemplate1"></dxi-column>
+            <dxi-column dataField="COBENH"  caption="Có bệnh nhân" alignment="center" cellTemplate="cellTemplate2"></dxi-column>
+            <dxi-column caption="Tổng" alignment="center" [calculateCellValue]="sumValue" cellTemplate="cellTemplate3"></dxi-column> 
+  
+            <div *dxTemplate="let data of 'cellTemplate1'">
+              <label class="status1">{{data.value}}</label>
+            </div>
+
+            <div *dxTemplate="let data of 'cellTemplate2'">
+                <label class="status2">{{data.value}}</label>
+            </div>
+
+            <div *dxTemplate="let data of 'cellTemplate3'">
+                <label class="status3">{{data.value}}</label>
+            </div>
+
+        </dx-data-grid> 
+    </div>
+
+    <div class="wrap2" >
+        <div class="title">
+            <img src="/assets/svg/high-temp.svg" style=" padding: 1px 5px 0 1px;">Tổng lượt đi trễ của mỗi khoa theo ngày</div>
+
+        <dx-data-grid [columnAutoWidth]="true" [dataSource]="ListLate" [rowAlternationEnabled]="true" [showColumnLines]="false" style="padding: 10px 20px 10px 20px;">
+            <dxi-column dataField="KHOA" ></dxi-column>
+            <dxi-column dataField="TREC1" caption="TRỄ CẤP 1 (5P)" alignment="center" cellTemplate="cellTemplate1"></dxi-column>
+            <dxi-column dataField="TREC2"  caption="TRỄ CẤP 2 (15P)" alignment="center" cellTemplate="cellTemplate2"></dxi-column>
+            <dxi-column dataField="TREC3" caption="TRỄ CẤP 3 (30P)" alignment="center" cellTemplate="cellTemplate3"></dxi-column> 
+  
+            <div *dxTemplate="let data of 'cellTemplate1'">
+                <label *ngIf="data.value!=0" class="late1">{{data.value}}</label>
+                <p *ngIf="data.value===0"></p>
+              </div>
+  
+              <div *dxTemplate="let data of 'cellTemplate2'">
+                  <label *ngIf="data.value!=0" class="late2">{{data.value}}</label>
+                  <p *ngIf="data.value===0"></p>
+              </div>
+  
+              <div *dxTemplate="let data of 'cellTemplate3'">
+                  <label *ngIf="data.value!=0" class="late3">{{data.value}}</label>
+                  <p *ngIf="data.value===0"></p>
+              </div>
+
+        </dx-data-grid> 
+    </div>
+</div>
+
+<div class="container-fluid" style='padding: 10px 70px 0px 70px; display: flex;' >
+    <div class="wrap3">
+        <div class="title" style="display: flexbox;">
+            Thống kê tình trạng giờ vào của y tá trong tháng 
+            <div style="float: right;"><dx-date-box [value]="now" type="date" width="150px" ></dx-date-box></div>
+        </div>
+        <dx-chart [dataSource]="ListLate2" style="padding: 20px 20px 10px 20px;" valueAxis="70">
+
+            <dxi-series color="#79cac4" valueField="SOM" name="Sớm" cornerRadius="15px"></dxi-series>
+            <dxi-series color="#2f71f5" valueField="TRE" name="Trễ" cornerRadius="15px" ></dxi-series>
+
+            <dxi-value-axis [maxValueMargin]="0.06" [visualRange]="{startValue:0}"></dxi-value-axis>
+
+            <dxo-common-series-settings argumentField="NGAY" type="bar">
+                <dxo-label [visible]="true" backgroundColor="none"></dxo-label>     
+            </dxo-common-series-settings>
+
+            <dxo-legend [visible]="false"></dxo-legend>   
+        </dx-chart>
+
+        <div style="display: flex; padding-top: 20px; padding-left: 43%;">  
+            <div style="display: flex;">
+                <label style="background-color: #79cac4; color: #79cac4; width: 50px; border-radius: 5px;">a</label>
+                <label style="background-color: #FFFFFF; color: black; width: 100px; text-align: center; font-size: 13px;"><h4>Đúng giờ</h4></label>
+            </div>
+            <div style="display: flex;">
+                <label style="background-color: #2f71f5; color: #2f71f5; width: 50px; border-radius: 5px;">a</label>
+                <label style="background-color: #FFFFFF; color: black; width: 50px; text-align: center; font-size: 13px;"><h4>Trễ</h4></label>
+            </div>
+        </div>
+    </div>
+
+    
+    
+</div>
+<app-footer></app-footer>
+

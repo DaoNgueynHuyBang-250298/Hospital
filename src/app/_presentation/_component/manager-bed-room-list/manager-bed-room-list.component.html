@@ -1,0 +1,54 @@
+<div class="wrap">
+  <div class="managerBed__title w-100">
+    Quản lí giường
+  </div>
+  <div class="managerBed">
+    <div class=" d-flex">
+      <div class='managerBed__roomList'>
+        <ng-container *ngFor='let item of roomInfo'>
+          <div class="managerBed__roomList__item flex-shrink-0">
+            {{item.roomName}}
+          </div>
+        </ng-container>
+      </div>
+      <div class='managerBed__bedList'>
+        <ng-container *ngFor="let item of roomInfo">
+          <div class="managerBed__bedList__item d-flex align-items-center">
+              <ng-container  *ngFor='let itemBed of item.listBed '>
+                <div class='bed bed--empty flex-shrink-0'
+                  *ngIf='itemBed.isAvailable==true'
+                >
+                  <div class='bed__icon'>  </div>
+                  <div class='bed__number'>{{itemBed.bedName}}</div>
+                </div>
+
+                <div class='bed bed--used flex-shrink-0'
+                  *ngIf='itemBed.isAvailable==false'
+                >
+                  <div class='bed__icon'>  </div>
+                  <div class='bed__number'>{{itemBed.bedName}}</div>
+                </div>
+              </ng-container>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+    
+  </div>
+  <div class='managerBed__footer' >
+    <div class='separate d-flex w-100 justify-content-center'>
+      <div style='width: 384px; height: 5px;background-color: #E5E5E5;'></div>
+    </div>
+    <div class='d-flex w-100 justify-content-center' style=''>
+      <div class='d-flex my-3' style='margin-right: 50px;'>
+        <div class='rec-used mr-2'></div>
+        <div class='title-bed'>Co benh nhan</div>
+      </div>
+      <div class='d-flex my-3'>
+        <div class='rec-empty mr-2'></div>
+        <div class='title-bed'>Giuong trong</div>
+      </div>
+    </div>
+  </div>
+
+</div>

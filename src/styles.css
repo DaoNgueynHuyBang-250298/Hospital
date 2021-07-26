@@ -1,0 +1,15 @@
+/* You can add global styles to this file, and also import other style files */
+.page-link{
+    background-color: #fcfcfc !important;
+    color: black !important;
+}
+
+.active > .page-link {
+    background-color: #2D3E50 !important;
+    color: white !important;
+}
+
+.modal-content{
+    background-color: transparent !important;
+    border: none !important;
+}

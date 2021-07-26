@@ -1,0 +1,21 @@
+<app-navbar></app-navbar>
+<div class="container-fluid">
+  <div style='height:100px;width:100%'></div>
+  <!-- {{rawData}} -->
+
+  <div class="row">
+    <div class="col-4">
+      <app-manager-bed-menu
+        [rawData]="rawData"
+        (filterValue)='setKey($event)'
+      ></app-manager-bed-menu>
+    </div>
+    <div class="col-8">
+      <app-manager-bed-room-list
+        [rawData]="rawData"
+        [key]="key"
+      ></app-manager-bed-room-list>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</div>
